@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  apiBaseUrl: `${window.location.origin}/api`
+  apiBaseUrl: '/api',
+  useMockApi: true
 };
