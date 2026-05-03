@@ -75,6 +75,70 @@
       text-decoration: none;
       color: var(--text);
     }
+    .hero-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.95fr);
+      gap: 18px;
+      align-items: start;
+    }
+    .hero-copy {
+      min-width: 0;
+    }
+    .report-meta {
+      display: grid;
+      gap: 12px;
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+    .meta-card {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 16px 18px;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
+      break-inside: avoid;
+    }
+    .meta-label {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--brand-2);
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .meta-value {
+      margin: 0;
+      color: var(--text);
+      font-size: 1.05rem;
+      font-weight: 800;
+      line-height: 1.5;
+    }
+    .meta-desc {
+      margin: 6px 0 0;
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 0.95rem;
+    }
+    .report-summary {
+      margin-top: 18px;
+      padding: 18px 20px;
+      border-radius: 18px;
+      border: 1px solid rgba(122, 78, 43, 0.18);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.7), rgba(249, 241, 230, 0.96));
+      break-inside: avoid;
+    }
+    .report-summary strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--brand);
+      font-size: 1rem;
+    }
+    .report-summary p:last-child {
+      margin-bottom: 0;
+    }
+    .report-actions {
+      margin-top: 16px;
+    }
     .section-note {
       margin: 0 0 8px;
       color: var(--muted);
@@ -97,6 +161,12 @@
     }
     .shot-card.featured {
       grid-column: 1 / -1;
+    }
+    .shot-card,
+    .meta-card,
+    .report-summary {
+      break-inside: avoid;
+      page-break-inside: avoid;
     }
     .shot-card img {
       display: block;
@@ -145,19 +215,122 @@
     }
     .footer { margin-top: 18px; color: var(--muted); }
     code { background: #fff; border: 1px solid var(--border); padding: 2px 6px; border-radius: 8px; }
+
+    @media print {
+      @page {
+        size: A4;
+        margin: 14mm 12mm 16mm;
+      }
+
+      :root {
+        --bg: #ffffff;
+        --surface: #ffffff;
+        --surface-2: #fbf7f2;
+      }
+
+      body {
+        background: #fff;
+        color: #111;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .page {
+        max-width: none;
+        padding: 0;
+      }
+
+      .hero {
+        padding: 20px;
+        margin-bottom: 0;
+        break-after: page;
+      }
+
+      .hero-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .nav {
+        display: none;
+      }
+
+      .section {
+        margin-top: 14px;
+        padding: 18px 20px;
+        box-shadow: none;
+        break-inside: auto;
+      }
+
+      .screenshot-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .shot-card {
+        background: #fff;
+        box-shadow: none;
+      }
+
+      .shot-card img {
+        max-height: 230px;
+      }
+
+      .shot-card.featured img {
+        max-height: 320px;
+      }
+
+      .shot-caption {
+        background: #fff;
+      }
+
+      .footer {
+        margin-top: 16px;
+        font-size: 0.92rem;
+      }
+    }
   </style>
 </head>
 <body>
   <main class="page">
     <section class="hero">
-      <p class="eyebrow">التقرير النهائي</p>
-      <h1>نموذج تقرير مشروع HR System</h1>
-      <p class="muted">صفحة عربية باتجاه RTL تلخص تعريف المشكلة والأهداف والتقنيات وتصميم قاعدة البيانات وأسماء الفريق، مع لقطات شاشة فعلية من النسخة الحية.</p>
-      <div class="nav">
-        <a href="index.html">الرجوع إلى الفهرس</a>
-        <a href="database-erd.html">عرض ERD</a>
-        <a href="requirements-checklist-ar.html">قائمة المتطلبات</a>
-        <a href="#screenshots">لقطات الشاشة</a>
+      <div class="hero-layout">
+        <div class="hero-copy">
+          <p class="eyebrow">التقرير النهائي</p>
+          <h1>تقرير مشروع HR System</h1>
+          <p class="muted">صفحة عربية باتجاه RTL تلخص تعريف المشكلة والأهداف والتقنيات وتصميم قاعدة البيانات وأسماء الفريق، مع لقطات شاشة فعلية من النسخة الحية ونسخة PDF جاهزة للطباعة.</p>
+
+          <div class="nav report-actions">
+            <a href="index.html">الرجوع إلى الفهرس</a>
+            <a href="report.pdf" target="_blank" rel="noopener">فتح PDF</a>
+            <a href="database-erd.html">عرض ERD</a>
+            <a href="requirements-checklist-ar.html">قائمة المتطلبات</a>
+            <a href="#screenshots">لقطات الشاشة</a>
+          </div>
+        </div>
+
+        <div class="report-meta" aria-label="ملخص التقرير">
+          <article class="meta-card">
+            <span class="meta-label">المشروع</span>
+            <p class="meta-value">HR System</p>
+            <p class="meta-desc">نظام لإدارة الأقسام والموظفين بواجهة عربية متجاوبة وتجربة استخدام واضحة.</p>
+          </article>
+
+          <article class="meta-card">
+            <span class="meta-label">التقنيات</span>
+            <p class="meta-value">.NET 10 + Angular + EF Core</p>
+            <p class="meta-desc">تم بناء الحل وفق code-first مع SQLite وواجهات API منظمة وقابلة للتوسع.</p>
+          </article>
+
+          <article class="meta-card">
+            <span class="meta-label">الإخراج</span>
+            <p class="meta-value">HTML + PDF قابل للطباعة</p>
+            <p class="meta-desc">النسخة الحالية مهيأة للعرض المباشر أو التسليم كملف مطبوع منسق.</p>
+          </article>
+        </div>
+      </div>
+
+      <div class="report-summary">
+        <strong>ملخص سريع</strong>
+        <p>يقدّم المشروع نموذجًا أوليًا متكاملًا يربط بين واجهة منظمة، وتصميم قاعدة بيانات واضح، ووظائف البحث والإدخال والحذف مع تنبيهات للمستخدم. صُممت هذه الصفحة لتكون مناسبة للتسليم النهائي، مع نسخة PDF مطابقة للطباعة.</p>
       </div>
     </section>
 
@@ -314,6 +487,12 @@
       <h2>7. الخلاصة</h2>
       <p>يحقق النموذج الأولي المطلوب عبر دمج تصميم HCI مع النماذج المرتبطة بقاعدة البيانات والبحث وتأكيد الحذف والتنبيهات.</p>
       <p class="muted">يمكن إضافة تحسينات مستقبلية مثل المصادقة، وترقيم الصفحات، والصلاحيات حسب الدور.</p>
+    </section>
+
+    <section class="section">
+      <h2>8. ملاحظة النشر</h2>
+      <p>في نسخة الإنتاج تُخدم الواجهة والخلفية من نفس الدومين، ويُستخدم المسار النسبي <code>/api</code> للوصول إلى الخلفية.</p>
+      <p class="muted">هذا التنظيم يسمح بعرض النسخة النهائية من الواجهة والتقرير من دون إعدادات إضافية على جهاز المراجع.</p>
     </section>
 
     <p class="footer">النسخة العربية HTML جاهزة للتسليم والطباعة أو العرض المباشر.</p>
