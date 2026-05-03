@@ -1,0 +1,50 @@
+<section class="page-stack">
+  <article class="page-card page-header">
+    <div>
+      <p class="eyebrow">{{ t('التوثيق', 'Documentation') }}</p>
+      <h1>{{ t('صفحة التوثيق المنظمة', 'Organized Documentation Hub') }}</h1>
+      <p class="muted">
+        {{ t('هنا يمكنك فتح ملفات التوثيق HTML مباشرة من داخل التطبيق بطريقة مرتبة.', 'Open the HTML documentation files directly from the app in an organized way.') }}
+      </p>
+
+      <div class="page-nav">
+        <a routerLink="/">{{ t('الرئيسية', 'Home') }}</a>
+        <a routerLink="/departments">{{ t('الأقسام', 'Departments') }}</a>
+        <a routerLink="/employees">{{ t('الموظفون', 'Employees') }}</a>
+      </div>
+    </div>
+
+    <span class="status-pill">{{ totalFiles }} {{ t('ملفًا', 'files') }}</span>
+  </article>
+
+  @for (group of groups; track group.titleEn) {
+    <article class="page-card">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">{{ t(group.titleAr, group.titleEn) }}</p>
+          <h2>{{ t(group.titleAr, group.titleEn) }}</h2>
+          <p class="muted">{{ t(group.noteAr, group.noteEn) }}</p>
+        </div>
+
+        <span class="status-pill">{{ group.links.length }} {{ t('ملفات', 'files') }}</span>
+      </div>
+
+      <div class="docs-grid">
+        @for (doc of group.links; track doc.href) {
+          <article class="doc-card">
+            <div>
+              <h3>{{ t(doc.titleAr, doc.titleEn) }}</h3>
+              <p>{{ t(doc.descriptionAr, doc.descriptionEn) }}</p>
+            </div>
+
+            <div class="button-row">
+              <a class="button primary" [href]="doc.href" target="_blank" rel="noopener">
+                {{ t('فتح الملف', 'Open file') }}
+              </a>
+            </div>
+          </article>
+        }
+      </div>
+    </article>
+  }
+</section>

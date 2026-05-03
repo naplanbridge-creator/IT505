@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>التقرير النهائي - IT505</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f4efe7;
+      --surface: #fffaf3;
+      --surface-2: #f9f1e6;
+      --text: #1f1a17;
+      --muted: #64594f;
+      --brand: #7a4e2b;
+      --brand-2: #a35f2d;
+      --border: #e5d6c5;
+      --accent: #2f7a4f;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Cairo", "Tahoma", "Arial", sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(163, 95, 45, 0.11), transparent 30%),
+        radial-gradient(circle at top left, rgba(122, 78, 43, 0.08), transparent 28%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.9;
+    }
+    .page { max-width: 1100px; margin: 0 auto; padding: 32px 20px 60px; }
+    .hero, .section {
+      background: rgba(255, 250, 243, 0.9);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      box-shadow: 0 12px 30px rgba(70, 47, 25, 0.06);
+    }
+    .hero { padding: 28px; }
+    .section { margin-top: 18px; padding: 22px 24px; }
+    .eyebrow { margin: 0 0 10px; color: var(--brand-2); font-weight: 700; }
+    h1, h2 { margin: 0 0 12px; line-height: 1.35; }
+    h1 { font-size: clamp(2rem, 4vw, 3.2rem); color: var(--brand); }
+    p { margin: 0 0 12px; }
+    .muted { color: var(--muted); }
+    ul { margin: 0; padding-inline-start: 22px; }
+    li { margin-bottom: 10px; }
+    .two-col {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin-top: 14px;
+    }
+    .box {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 18px;
+    }
+    a { color: var(--brand); text-decoration: none; font-weight: 700; }
+    a:hover { text-decoration: underline; }
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .nav a {
+      display: inline-flex;
+      padding: 10px 14px;
+      border-radius: 12px;
+      background: #fff;
+      border: 1px solid var(--border);
+      text-decoration: none;
+      color: var(--text);
+    }
+    .footer { margin-top: 18px; color: var(--muted); }
+    code { background: #fff; border: 1px solid var(--border); padding: 2px 6px; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <p class="eyebrow">التقرير النهائي</p>
+      <h1>نموذج تقرير مشروع Automatic Zoom</h1>
+      <p class="muted">صفحة عربية باتجاه RTL تلخص تعريف المشكلة والأهداف والتقنيات وتصميم قاعدة البيانات وأسماء الفريق.</p>
+      <div class="nav">
+        <a href="index.html">الرجوع إلى الفهرس</a>
+        <a href="database-erd.html">عرض ERD</a>
+        <a href="requirements-checklist-ar.html">قائمة المتطلبات</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>1. تعريف المشكلة</h2>
+      <p>يقدم المشروع نموذجًا أوليًا لنظام إدارة بواجهة نظيفة وسهلة الاستخدام، مع إمكانية البحث والإدخال وتأكيد الحذف والتنبيهات للمستخدم.</p>
+    </section>
+
+    <section class="section">
+      <h2>2. الأهداف</h2>
+      <ul>
+        <li>بناء واجهة واضحة ومناسبة لمبادئ HCI.</li>
+        <li>استخدام .NET 10 وAngular وEF Core بنمط code-first.</li>
+        <li>حفظ البيانات وإدارتها داخل طبقة قاعدة بيانات آمنة.</li>
+        <li>عرض وظائف CRUD مع التصفية في البحث.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>3. لغات البرمجة وبيئة التطوير</h2>
+      <div class="two-col">
+        <div class="box">
+          <ul>
+            <li>C# مع ASP.NET Core Web API</li>
+            <li>TypeScript مع Angular</li>
+          </ul>
+        </div>
+        <div class="box">
+          <ul>
+            <li>HTML وSCSS وتهيئة JSON</li>
+            <li>Visual Studio Code</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>4. تصميم قاعدة البيانات</h2>
+      <ul>
+        <li>جدول Department</li>
+        <li>جدول Employee</li>
+        <li>علاقة واحد إلى متعدد بين Department وEmployee</li>
+      </ul>
+      <p class="muted">راجع <a href="database-erd.html">مخطط قاعدة البيانات ERD</a> للمزيد من التفاصيل.</p>
+    </section>
+
+    <section class="section">
+      <h2>5. لقطات الشاشة المطلوب تضمينها</h2>
+      <ul>
+        <li>الشاشة الرئيسية</li>
+        <li>نموذج إدخال القسم</li>
+        <li>نموذج إدخال الموظف</li>
+        <li>نموذج البحث مع الفلاتر</li>
+        <li>جدول نتائج البحث</li>
+        <li>نافذة تأكيد الحذف</li>
+        <li>تنبيهات النجاح والخطأ</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>6. أعضاء الفريق</h2>
+      <ul>
+        <li>العضو 1: احمد حمدي كمال محمد - 202400647</li>
+        <li>العضو 2: محمد سعد زكريا توفيق - 202400648</li>
+        <li>العضو 3: محمد محمد عبد المنعم محمد - 202400722</li>
+        <li>العضو 4: حمدان سعودى محمد امين - 202300625</li>
+        <li>العضو 5: أحمد عصام امين السيد - 202400173</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>7. الخلاصة</h2>
+      <p>يحقق النموذج الأولي المطلوب عبر دمج تصميم HCI مع النماذج المرتبطة بقاعدة البيانات والبحث وتأكيد الحذف والتنبيهات.</p>
+      <p class="muted">يمكن إضافة تحسينات مستقبلية مثل المصادقة، وترقيم الصفحات، والصلاحيات حسب الدور.</p>
+    </section>
+
+    <p class="footer">النسخة العربية HTML جاهزة للتسليم والطباعة أو العرض المباشر.</p>
+  </main>
+</body>
+</html>

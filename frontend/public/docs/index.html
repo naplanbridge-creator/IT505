@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>وثائق مشروع IT505</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f4efe7;
+      --surface: #fffaf3;
+      --surface-2: #f9f1e6;
+      --text: #1f1a17;
+      --muted: #64594f;
+      --brand: #7a4e2b;
+      --brand-2: #a35f2d;
+      --border: #e5d6c5;
+      --success: #2f7a4f;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Cairo", "Tahoma", "Arial", sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(163, 95, 45, 0.11), transparent 30%),
+        radial-gradient(circle at top left, rgba(122, 78, 43, 0.08), transparent 28%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+    }
+
+    .page {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 32px 20px 60px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #fffdf9, #f7ecdd);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: 0 18px 50px rgba(122, 78, 43, 0.08);
+    }
+
+    .eyebrow {
+      margin: 0 0 10px;
+      color: var(--brand-2);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    h1, h2, h3 {
+      margin: 0 0 12px;
+      line-height: 1.3;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      color: var(--brand);
+    }
+
+    p {
+      margin: 0 0 14px;
+      color: var(--text);
+    }
+
+    .muted { color: var(--muted); }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+      margin-top: 22px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 10px 26px rgba(70, 47, 25, 0.06);
+    }
+
+    .card a {
+      color: var(--brand);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .card a:hover {
+      text-decoration: underline;
+    }
+
+    .section {
+      margin-top: 22px;
+      background: rgba(255, 255, 255, 0.66);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 22px;
+    }
+
+    ul {
+      margin: 0;
+      padding-inline-start: 22px;
+    }
+
+    li { margin-bottom: 8px; }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: #fff;
+      border: 1px solid var(--border);
+      color: var(--success);
+      font-weight: 700;
+      font-size: 0.92rem;
+    }
+
+    .footer {
+      margin-top: 22px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 14px;
+      border-radius: 14px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .links a:hover {
+      background: #fff;
+      border-color: #d8c4af;
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <p class="eyebrow">مشروع IT505</p>
+      <h1>وثائق المشروع العربية بصيغة HTML</h1>
+      <p class="muted">
+        هذه الصفحة تجمع نسخ HTML عربية ومنسقة باتجاه RTL لكل ملفات التوثيق الأساسية الخاصة بالمشروع.
+        يمكنك فتح أي صفحة مباشرة من هنا أثناء العرض أو أثناء تجهيز التقرير النهائي.
+      </p>
+      <div class="badge">جاهز للعرض والتنقل</div>
+
+      <div class="grid">
+        <article class="card">
+          <h2><a href="report.html">التقرير النهائي</a></h2>
+          <p class="muted">يحتوي على تعريف المشكلة والأهداف والتقنيات المستخدمة وتصميم قاعدة البيانات وأسماء الفريق.</p>
+        </article>
+        <article class="card">
+          <h2><a href="requirements-checklist-ar.html">قائمة المتطلبات</a></h2>
+          <p class="muted">يوضح المتطلبات المطلوبة في التكليف وحالة تنفيذ كل بند ومكانه داخل المشروع.</p>
+        </article>
+        <article class="card">
+          <h2><a href="database-erd.html">مخطط قاعدة البيانات</a></h2>
+          <p class="muted">صفحة ERD عربية توضّح العلاقة بين Department وEmployee.</p>
+        </article>
+        <article class="card">
+          <h2><a href="team-roles.html">توزيع الأدوار</a></h2>
+          <p class="muted">خطة حديث الفيديو مع بيانات كل عضو وما الذي يشرحه أثناء العرض.</p>
+        </article>
+        <article class="card">
+          <h2><a href="video-script.html">نص الفيديو</a></h2>
+          <p class="muted">ترتيب حديث الفريق وخاتمة قصيرة مناسبة للتسجيل النهائي.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>ملاحظات سريعة</h2>
+      <ul>
+        <li>كل الصفحات مكتوبة بالعربية ومضبوطة باتجاه <strong>RTL</strong>.</li>
+        <li>يمكن فتح الملفات مباشرة من المتصفح بدون أي إعدادات إضافية.</li>
+        <li>تم الإبقاء على الأسماء الإنجليزية التقنية مثل Department وEmployee لتطابقها مع المشروع.</li>
+      </ul>
+      <div class="links">
+        <a href="report-outline.md">النسخة Markdown للتقرير</a>
+        <a href="requirements-checklist-ar.md">النسخة Markdown للقائمة</a>
+        <a href="team-roles.md">النسخة Markdown لتوزيع الأدوار</a>
+      </div>
+    </section>
+
+    <p class="footer">تم إعداد هذه الوثائق لتكون مناسبة للتسليم والمراجعة السريعة قبل العرض.</p>
+  </main>
+</body>
+</html>

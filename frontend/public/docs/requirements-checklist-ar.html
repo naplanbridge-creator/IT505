@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>قائمة التحقق - IT505</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f4efe7;
+      --surface: #fffaf3;
+      --surface-2: #f9f1e6;
+      --text: #1f1a17;
+      --muted: #64594f;
+      --brand: #7a4e2b;
+      --border: #e5d6c5;
+      --success: #2f7a4f;
+      --warn: #9a5c16;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Cairo", "Tahoma", "Arial", sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(163, 95, 45, 0.11), transparent 30%),
+        radial-gradient(circle at top left, rgba(122, 78, 43, 0.08), transparent 28%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.9;
+    }
+    .page { max-width: 1100px; margin: 0 auto; padding: 32px 20px 60px; }
+    .hero, .section {
+      background: rgba(255, 250, 243, 0.92);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 24px;
+      box-shadow: 0 12px 30px rgba(70, 47, 25, 0.05);
+    }
+    .section { margin-top: 18px; }
+    h1, h2 { margin: 0 0 12px; }
+    h1 { font-size: clamp(1.9rem, 4vw, 3rem); color: var(--brand); }
+    p { margin: 0 0 12px; }
+    .muted { color: var(--muted); }
+    .nav { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+    .nav a {
+      display: inline-flex;
+      padding: 10px 14px;
+      border-radius: 12px;
+      background: #fff;
+      border: 1px solid var(--border);
+      color: var(--brand);
+      text-decoration: none;
+      font-weight: 700;
+    }
+    .nav a:hover { text-decoration: underline; }
+    ul { margin: 0; padding-inline-start: 22px; }
+    li { margin-bottom: 12px; }
+    .item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px 18px;
+      box-shadow: 0 8px 18px rgba(70, 47, 25, 0.04);
+    }
+    .check {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      margin-left: 8px;
+      font-weight: 700;
+      color: #fff;
+      background: var(--success);
+      vertical-align: middle;
+    }
+    .check.pending { background: var(--warn); }
+    .path {
+      display: block;
+      margin-top: 8px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      font-family: "Consolas", "Courier New", monospace;
+      direction: ltr;
+      text-align: left;
+      overflow-x: auto;
+    }
+    .small { color: var(--muted); font-size: 0.95rem; }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <h1>قائمة التحقق من متطلبات مشروع IT505</h1>
+      <p class="muted">نسخة HTML عربية مع RTL توضح المتطلبات المطلوبة، وهل تم تنفيذها، وأين مكانها داخل المشروع.</p>
+      <div class="nav">
+        <a href="index.html">الرجوع إلى الفهرس</a>
+        <a href="report.html">التقرير</a>
+        <a href="database-erd.html">ERD</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>المتطلبات المنفذة</h2>
+      <div class="item">
+        <span class="check">✓</span> تطبيق بواجهة رسومية مناسبة لمبادئ HCI مع ألوان واضحة وخطوط مريحة وسهلة القراءة.
+        <span class="path">frontend/src/app/app.html ، frontend/src/app/app.scss</span>
+      </div>
+      <div class="item" style="margin-top: 12px;">
+        <span class="check">✓</span> استخدام قاعدة بيانات آمنة مع Entity Framework Core بنمط code-first وSQLite.
+        <span class="path">backend/Data/ApplicationDbContext.cs ، backend/Program.cs ، backend/appsettings.json</span>
+      </div>
+      <div class="item" style="margin-top: 12px;">
+        <span class="check">✓</span> استخدام .NET 10 وAngular وcode-first كما هو مطلوب.
+        <span class="path">backend/IT505.Api.csproj ، frontend/package.json ، frontend/angular.json</span>
+      </div>
+      <div class="item" style="margin-top: 12px;">
+        <span class="check">✓</span> نموذج بحث عن الموظفين يدعم البحث بالاسم والكود وتاريخ التعيين.
+        <span class="path">backend/Controllers/EmployeesController.cs ، frontend/src/app/app.ts ، frontend/src/app/app.html</span>
+      </div>
+      <div class="item" style="margin-top: 12px;">
+        <span class="check">✓</span> عرض البيانات الناتجة في جدول/شبكة بيانات بعد البحث.
+        <span class="path">frontend/src/app/app.html</span>
+      </div>
+      <div class="item" style="margin-top: 12px;">
+        <span class="check">✓</span> نموذج إدخال لكل جدول في قاعدة البيانات مع كل الحقول المطلوبة.
+        <span class="path">frontend/src/app/app.html ، backend/Controllers/DepartmentsController.cs ، backend/Controllers/EmployeesController.cs</span>
+        <div class="small" style="margin-top: 8px;">ملاحظة: تم اعتماد استجابة إنشاء صريحة من الخادم لحفظ السجلات الجديدة بدون مشاكل في توليد المسار.</div>
+      </div>
+      <div class="item" style="margin-top: 12px;">
+        <span class="check">✓</span> نافذة/حوار تأكيد قبل الحذف.
+        <span class="path">frontend/src/app/app.html ، frontend/src/app/app.ts</span>
+      </div>
+      <div class="item" style="margin-top: 12px;">
+        <span class="check">✓</span> تنبيهات ورسائل للحالات المهمة مثل النجاح والتحذير والخطأ والمعلومات.
+        <span class="path">frontend/src/app/app.html ، frontend/src/app/app.ts ، frontend/src/app/app.scss</span>
+      </div>
+      <div class="item" style="margin-top: 12px;">
+        <span class="check">✓</span> قاعدة بيانات تحتوي على جدول Department وجدول Employee مع علاقة واحد إلى متعدد بينهما.
+        <span class="path">backend/Data/ApplicationDbContext.cs ، docs/database-erd.html</span>
+      </div>
+      <div class="item" style="margin-top: 12px;">
+        <span class="check">✓</span> تقرير يوضح Problem Definition and Objectives.
+        <span class="path">docs/report.html ، docs/report-outline.md</span>
+      </div>
+      <div class="item" style="margin-top: 12px;">
+        <span class="check">✓</span> تقرير يوضح لغات البرمجة وبيئة التطوير المستخدمة.
+        <span class="path">docs/report.html ، docs/report-outline.md</span>
+      </div>
+      <div class="item" style="margin-top: 12px;">
+        <span class="check">✓</span> تقرير يضم ERD لقاعدة البيانات.
+        <span class="path">docs/database-erd.html ، docs/database-erd.md</span>
+      </div>
+      <div class="item" style="margin-top: 12px;">
+        <span class="check">✓</span> تقرير يضم أسماء الفريق كاملة.
+        <span class="path">docs/report.html ، docs/report-outline.md ، docs/team-roles.md</span>
+      </div>
+      <div class="item" style="margin-top: 12px;">
+        <span class="check">✓</span> خطة توزيع الكلام في الفيديو على أعضاء الفريق الخمسة.
+        <span class="path">docs/team-roles.html ، docs/video-script.html ، docs/team-roles.md ، docs/video-script.md</span>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>المتطلبات التي تحتاج استكمالًا قبل التسليم النهائي</h2>
+      <div class="item">
+        <span class="check pending">!</span> لقطات الشاشة لجميع النماذج والشاشات المطلوبة في التقرير.
+        <span class="small">المطلوب إضافته: خذ صورًا من الواجهة الحالية داخل المتصفح ثم أضفها إلى التقرير أو إلى مجلد تسليم مخصص.</span>
+      </div>
+      <div class="item" style="margin-top: 12px;">
+        <span class="check pending">!</span> صور أعضاء الفريق داخل الفيديو أو العرض النهائي.
+        <span class="small">المطلوب إضافته: أضف صورة كل عضو أثناء التسجيل أو داخل العرض النهائي حسب المطلوب في التكليف.</span>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
