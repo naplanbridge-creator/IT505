@@ -30,8 +30,24 @@
   line-height: 1.75;
 }
 
-.doc-card .button-row {
+.doc-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
   margin-top: auto;
+  color: var(--brand);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.doc-link::after {
+  content: '↗';
+  font-size: 1rem;
+}
+
+.doc-link:hover {
+  text-decoration: underline;
 }
 
 @media (max-width: 760px) {

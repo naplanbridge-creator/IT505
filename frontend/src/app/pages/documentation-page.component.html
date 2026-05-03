@@ -37,11 +37,9 @@
               <p>{{ t(doc.descriptionAr, doc.descriptionEn) }}</p>
             </div>
 
-            <div class="button-row">
-              <a class="button primary" [href]="doc.href" target="_blank" rel="noopener">
-                {{ t('فتح الملف', 'Open file') }}
-              </a>
-            </div>
+            <a class="doc-link" [href]="doc.href" target="_blank" rel="noopener">
+              {{ t('فتح الملف', 'Open file') }}
+            </a>
           </article>
         }
       </div>
