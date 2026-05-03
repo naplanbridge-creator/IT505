@@ -596,6 +596,89 @@ tbody td {
 		border-radius: 20px;
 	}
 
+	.section-head {
+		flex-direction: column;
+		align-items: stretch;
+		gap: 10px;
+	}
+
+	.table-wrap {
+		overflow: visible;
+		border: 0;
+		background: transparent;
+	}
+
+	table {
+		min-width: 0;
+	}
+
+	thead {
+		display: none;
+	}
+
+	tbody,
+	tr,
+	td {
+		display: block;
+		width: 100%;
+	}
+
+	tbody tr {
+		margin-bottom: 12px;
+		padding: 14px;
+		border: 1px solid var(--border);
+		border-radius: 18px;
+		background: var(--surface-strong);
+		box-shadow: 0 10px 24px var(--card-shadow);
+	}
+
+	tbody tr:last-child {
+		margin-bottom: 0;
+	}
+
+	tbody td {
+		display: flex;
+		align-items: flex-start;
+		justify-content: space-between;
+		gap: 12px;
+		padding: 10px 0;
+		border-bottom: 0;
+	}
+
+	tbody td::before {
+		content: attr(data-label);
+		flex: 0 0 42%;
+		max-width: 42%;
+		font-size: 0.74rem;
+		font-weight: 700;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		color: var(--table-head-text);
+	}
+
+	tbody td.empty-state {
+		display: block;
+		padding: 18px 0;
+		text-align: center;
+	}
+
+	tbody td.empty-state::before {
+		content: none;
+	}
+
+	.actions-cell {
+		display: grid;
+		gap: 10px;
+		text-align: start;
+	}
+
+	.actions-cell .table-actions {
+		flex-direction: column;
+		align-items: stretch;
+		justify-content: stretch;
+		width: 100%;
+	}
+
 	.form-grid {
 		grid-template-columns: 1fr;
 	}

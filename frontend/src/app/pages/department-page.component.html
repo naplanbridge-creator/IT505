@@ -89,11 +89,11 @@
         <tbody>
           @for (department of departments(); track department.id) {
             <tr>
-              <td><span class="table-badge">{{ department.code }}</span></td>
-              <td>{{ department.name }}</td>
-              <td>{{ formatDate(department.establishedDate) }}</td>
-              <td>{{ department.employeeCount }}</td>
-              <td class="actions-cell">
+              <td [attr.data-label]="t('الكود', 'Code')"><span class="table-badge">{{ department.code }}</span></td>
+              <td [attr.data-label]="t('الاسم', 'Name')">{{ department.name }}</td>
+              <td [attr.data-label]="t('تاريخ الإنشاء', 'Established')">{{ formatDate(department.establishedDate) }}</td>
+              <td [attr.data-label]="t('عدد الموظفين', 'Employees')">{{ department.employeeCount }}</td>
+              <td class="actions-cell" [attr.data-label]="t('الإجراءات', 'Actions')">
                 <div class="table-actions">
                   <button type="button" class="button ghost" [disabled]="loading()" (click)="beginDepartmentEdit(department)">{{ t('تعديل', 'Edit') }}</button>
                   <button type="button" class="button danger" [disabled]="loading()" (click)="openDepartmentDeleteDialog(department)">{{ t('حذف', 'Delete') }}</button>

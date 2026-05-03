@@ -70,10 +70,10 @@
         <tbody>
           @for (employee of employeeResults(); track employee.id) {
             <tr>
-              <td><span class="table-badge">{{ employee.code }}</span></td>
-              <td>{{ employee.fullName }}</td>
-              <td>{{ formatDate(employee.hireDate) }}</td>
-              <td>{{ employee.departmentName }}</td>
+              <td [attr.data-label]="t('الكود', 'Code')"><span class="table-badge">{{ employee.code }}</span></td>
+              <td [attr.data-label]="t('الاسم', 'Name')">{{ employee.fullName }}</td>
+              <td [attr.data-label]="t('تاريخ التعيين', 'Hire Date')">{{ formatDate(employee.hireDate) }}</td>
+              <td [attr.data-label]="t('القسم', 'Department')">{{ employee.departmentName }}</td>
             </tr>
           } @empty {
             <tr>

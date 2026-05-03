@@ -97,11 +97,11 @@
         <tbody>
           @for (employee of employees(); track employee.id) {
             <tr>
-              <td><span class="table-badge">{{ employee.code }}</span></td>
-              <td>{{ employee.fullName }}</td>
-              <td>{{ formatDate(employee.hireDate) }}</td>
-              <td>{{ employee.departmentName }}</td>
-              <td class="actions-cell">
+              <td [attr.data-label]="t('الكود', 'Code')"><span class="table-badge">{{ employee.code }}</span></td>
+              <td [attr.data-label]="t('الاسم', 'Name')">{{ employee.fullName }}</td>
+              <td [attr.data-label]="t('تاريخ التعيين', 'Hire Date')">{{ formatDate(employee.hireDate) }}</td>
+              <td [attr.data-label]="t('القسم', 'Department')">{{ employee.departmentName }}</td>
+              <td class="actions-cell" [attr.data-label]="t('الإجراءات', 'Actions')">
                 <div class="table-actions">
                   <button type="button" class="button ghost" [disabled]="loading()" (click)="beginEmployeeEdit(employee)">{{ t('تعديل', 'Edit') }}</button>
                   <button type="button" class="button danger" [disabled]="loading()" (click)="openEmployeeDeleteDialog(employee)">{{ t('حذف', 'Delete') }}</button>
