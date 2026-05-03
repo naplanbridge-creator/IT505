@@ -584,6 +584,10 @@ tbody td {
 	.page-header {
 		gap: 20px;
 	}
+
+	.section-head {
+		align-items: stretch;
+	}
 }
 
 @media (max-width: 760px) {
@@ -612,6 +616,43 @@ tbody td {
 	.page-nav a,
 	.dialog-actions .button {
 		width: 100%;
+	}
+
+	.page-header h1 {
+		font-size: clamp(1.7rem, 9vw, 2.7rem);
+	}
+
+	.page-card h2 {
+		font-size: 1.25rem;
+	}
+}
+
+@media (max-width: 520px) {
+	.page-stack {
+		gap: 16px;
+	}
+
+	.page-card {
+		padding: 14px;
+		border-radius: 18px;
+	}
+
+	.stat-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.table-wrap {
+		border-radius: 14px;
+	}
+
+	th,
+	td {
+		padding: 12px 14px;
+	}
+
+	.dialog {
+		padding: 16px;
+		border-radius: 18px;
 	}
 }
 
