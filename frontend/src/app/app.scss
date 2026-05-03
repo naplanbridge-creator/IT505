@@ -1,0 +1,253 @@
+:host {
+	display: block;
+	min-height: 100vh;
+	color: var(--app-text);
+}
+
+.shell {
+	position: relative;
+	min-height: 100vh;
+	padding: 32px;
+	overflow: hidden;
+	background:
+		radial-gradient(circle at top left, var(--shell-grad-1), transparent 32%),
+		radial-gradient(circle at top right, var(--shell-grad-2), transparent 30%),
+		var(--shell-grad-3);
+}
+
+.shell::before,
+.shell::after {
+	content: '';
+	position: absolute;
+	border-radius: 50%;
+	filter: blur(18px);
+	opacity: 0.75;
+	pointer-events: none;
+}
+
+.shell::before {
+	width: 320px;
+	height: 320px;
+	right: -120px;
+	top: 180px;
+	background: var(--shell-glow-a);
+}
+
+.shell::after {
+	width: 240px;
+	height: 240px;
+	left: -100px;
+	bottom: 120px;
+	background: var(--shell-glow-b);
+}
+
+.content {
+	position: relative;
+	z-index: 1;
+	display: grid;
+	gap: 24px;
+	max-width: 1480px;
+	margin: 0 auto;
+}
+
+.hero {
+	display: grid;
+	grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+	gap: 24px;
+	padding: 28px;
+	border: 1px solid var(--hero-border);
+	border-radius: 28px;
+	background: var(--hero-bg);
+	box-shadow: 0 20px 44px var(--hero-shadow);
+	backdrop-filter: blur(18px);
+}
+
+.eyebrow {
+	margin: 0 0 12px;
+	text-transform: uppercase;
+	letter-spacing: 0.24em;
+	font-size: 0.78rem;
+	color: var(--hero-eyebrow);
+}
+
+.hero h1 {
+	margin: 0;
+	font-family: 'Cairo', 'Tahoma', sans-serif;
+	font-weight: 800;
+	font-size: clamp(2rem, 4vw, 3.4rem);
+	line-height: 0.98;
+	color: var(--hero-title);
+}
+
+.hero p {
+	max-width: 62ch;
+	margin: 18px 0 0;
+	color: var(--hero-copy);
+	line-height: 1.8;
+}
+
+.hero-actions {
+	display: grid;
+	gap: 8px;
+	align-content: start;
+	justify-items: stretch;
+}
+
+.menu-row {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	width: 100%;
+	flex-wrap: nowrap;
+}
+
+.control-strip {
+	display: flex;
+	gap: 10px;
+	flex-wrap: nowrap;
+	margin-inline-start: auto;
+	justify-content: flex-end;
+	align-self: end;
+}
+
+.top-links {
+	flex: 1 1 auto;
+	min-width: 0;
+}
+
+.top-links a {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 40px;
+	padding: 0 12px;
+	border-radius: 12px;
+	border: 1px solid var(--nav-border);
+	background: var(--nav-bg);
+	color: var(--nav-text);
+	text-decoration: none;
+	font-weight: 700;
+	transition: transform 0.18s ease, background 0.18s ease;
+}
+
+.top-links a:hover,
+.top-links a.active {
+	transform: translateY(-1px);
+	background: var(--nav-active-bg);
+}
+
+.icon-btn {
+	border: 0;
+	background: var(--switch-bg);
+	border: 1px solid var(--switch-border);
+	color: var(--switch-btn-text);
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 42px;
+	height: 42px;
+	padding: 0;
+	border-radius: 10px;
+	font-weight: 700;
+	cursor: pointer;
+	transition: transform 0.18s ease, background 0.18s ease;
+}
+
+.icon-btn:first-child {
+	margin-inline-start: auto;
+}
+
+.icon-btn:hover {
+	transform: translateY(-1px);
+}
+
+.icon-btn svg {
+	width: 18px;
+	height: 18px;
+	fill: currentColor;
+}
+
+.icon-btn:focus-visible {
+	outline: 2px solid color-mix(in srgb, var(--switch-btn-active-bg) 70%, #ffffff 30%);
+	outline-offset: 2px;
+}
+
+.icon-btn:active,
+.icon-btn.active {
+	background: var(--switch-btn-active-bg);
+	color: var(--switch-btn-active-text);
+}
+
+@media (max-width: 520px) {
+	.menu-row {
+		gap: 10px;
+	}
+
+	.control-strip {
+		width: 100%;
+		justify-content: stretch;
+	}
+
+	.icon-btn {
+		flex: 1;
+		width: auto;
+	}
+}
+
+.toast {
+	position: fixed;
+	top: 20px;
+	right: 20px;
+	z-index: 30;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 14px;
+	width: min(460px, calc(100vw - 40px));
+	padding: 16px 18px;
+	border-radius: 18px;
+	border: 1px solid var(--toast-border);
+	box-shadow: 0 18px 36px var(--toast-shadow);
+	backdrop-filter: blur(18px);
+}
+
+.toast.success { background: var(--toast-success-bg); }
+.toast.warning { background: var(--toast-warning-bg); }
+.toast.danger { background: var(--toast-danger-bg); }
+.toast.info { background: var(--toast-info-bg); }
+
+.toast strong {
+	display: block;
+	margin-bottom: 2px;
+	font-size: 0.9rem;
+	text-transform: uppercase;
+}
+
+.toast span {
+	color: var(--toast-text);
+}
+
+.toast-close {
+	border: 0;
+	background: transparent;
+	color: var(--toast-close);
+	font-size: 1.2rem;
+	cursor: pointer;
+}
+
+@media (max-width: 900px) {
+	.shell {
+		padding: 16px;
+	}
+
+	.hero {
+		grid-template-columns: 1fr;
+		padding: 20px;
+	}
+
+	.toast {
+		left: 16px;
+		right: 16px;
+		width: auto;
+	}
+}

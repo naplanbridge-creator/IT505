@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>توزيع الأدوار - IT505</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f4efe7;
+      --surface: #fffaf3;
+      --surface-2: #f9f1e6;
+      --text: #1f1a17;
+      --muted: #64594f;
+      --brand: #7a4e2b;
+      --border: #e5d6c5;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: "Cairo", "Tahoma", "Arial", sans-serif; background: var(--bg); color: var(--text); line-height: 1.9; }
+    .page { max-width: 1100px; margin: 0 auto; padding: 32px 20px 60px; }
+    .hero, .section { background: rgba(255, 250, 243, 0.94); border: 1px solid var(--border); border-radius: 22px; padding: 24px; box-shadow: 0 12px 30px rgba(70, 47, 25, 0.05); }
+    .section { margin-top: 18px; }
+    h1, h2 { margin: 0 0 12px; }
+    h1 { font-size: clamp(1.9rem, 4vw, 3rem); color: var(--brand); }
+    p { margin: 0 0 12px; }
+    .muted { color: var(--muted); }
+    .nav { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+    .nav a { display: inline-flex; padding: 10px 14px; border-radius: 12px; background: #fff; border: 1px solid var(--border); color: var(--brand); text-decoration: none; font-weight: 700; }
+    .nav a:hover { text-decoration: underline; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+    .card { background: var(--surface-2); border: 1px solid var(--border); border-radius: 18px; padding: 18px; }
+    ul { margin: 0; padding-inline-start: 22px; }
+    li { margin-bottom: 8px; }
+    .label { display: inline-block; padding: 6px 10px; border-radius: 999px; background: #fff; border: 1px solid var(--border); color: var(--brand); font-weight: 700; font-size: 0.88rem; margin-bottom: 10px; }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <h1>توزيع الأدوار في الفيديو</h1>
+      <p class="muted">هذه النسخة العربية توضّح ما الذي يشرحه كل عضو في العرض النهائي مع اسمه الكامل وكوده الطلابي.</p>
+      <div class="nav">
+        <a href="index.html">الرجوع إلى الفهرس</a>
+        <a href="video-script.html">نص الفيديو</a>
+        <a href="report.html">التقرير</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="grid">
+        <article class="card">
+          <span class="label">العضو 1</span>
+          <h2>احمد حمدي كمال محمد - 202400647</h2>
+          <ul>
+            <li>الدور الأساسي: تقديم المشروع وشرح المشكلة والأهداف.</li>
+            <li>ما يجب حفظه: سبب بناء التطبيق، وما الذي يحله، واختيارات HCI.</li>
+            <li>جزء العرض: شرح الواجهة الرئيسية والتصميم العام.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <span class="label">العضو 2</span>
+          <h2>محمد سعد زكريا توفيق - 202400648</h2>
+          <ul>
+            <li>الدور الأساسي: شرح الخلفية التقنية وقاعدة البيانات code-first.</li>
+            <li>ما يجب حفظه: .NET 10 وEF Core وSQLite وجداول Department وEmployee.</li>
+            <li>جزء العرض: شرح ERD وملخص الخلفية.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <span class="label">العضو 3</span>
+          <h2>محمد محمد عبد المنعم محمد - 202400722</h2>
+          <ul>
+            <li>الدور الأساسي: شرح البحث في الموظفين وجدول النتائج.</li>
+            <li>ما يجب حفظه: البحث بالاسم والكود والتاريخ وكيفية ظهور النتائج.</li>
+            <li>جزء العرض: استخدام نموذج البحث وشرح الأعمدة.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <span class="label">العضو 4</span>
+          <h2>حمدان سعودى محمد امين - 202300625</h2>
+          <ul>
+            <li>الدور الأساسي: شرح نماذج الإدخال والتعديل.</li>
+            <li>ما يجب حفظه: حقول القسم والموظف، والتحقق، واختيار القسم.</li>
+            <li>جزء العرض: إضافة قسم ثم إضافة موظف.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <span class="label">العضو 5</span>
+          <h2>أحمد عصام امين السيد - 202400173</h2>
+          <ul>
+            <li>الدور الأساسي: شرح تأكيد الحذف والتنبيهات والخاتمة.</li>
+            <li>ما يجب حفظه: أهمية نافذة التأكيد وأنواع التنبيهات.</li>
+            <li>جزء العرض: حذف سجل ثم إنهاء العرض بالخلاصة.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

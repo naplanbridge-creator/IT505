@@ -1,0 +1,136 @@
+<section class="page-stack">
+  <article class="page-card page-header">
+    <div>
+      <p class="eyebrow">{{ t('إدخال الموظفين', 'Employee Input') }}</p>
+      <h1>{{ t('شاشة الموظفين', 'Employee Screen') }}</h1>
+      <p class="muted">{{ t('نموذج الموظف في الأعلى، وقائمة الداتابيس بالأسفل.', 'Employee form on top, database list below.') }}</p>
+    </div>
+    <span class="status-pill">{{ t('عدد الموظفين', 'Employees') }}: {{ employees().length }}</span>
+  </article>
+
+  @if (loading()) {
+    <div class="loading-line" aria-live="polite">
+      <span class="spinner"></span>
+      {{ t('جاري تحديث بيانات الموظفين...', 'Synchronizing employee data...') }}
+    </div>
+  }
+
+  <article class="page-card">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">{{ t('نموذج الموظف', 'Employee Form') }}</p>
+        <h2>{{ employeeEditingId() === null ? t('إضافة موظف', 'Add Employee') : t('تعديل الموظف المحدد', 'Edit Selected Employee') }}</h2>
+      </div>
+      @if (employeeEditingId() !== null) {
+        <button type="button" class="button ghost" [disabled]="loading()" (click)="cancelEmployeeEdit()">{{ t('إلغاء التعديل', 'Cancel edit') }}</button>
+      }
+    </div>
+
+    <form [formGroup]="employeeForm" (ngSubmit)="saveEmployee()" novalidate>
+      <div class="form-grid">
+        <div class="field">
+          <label for="employeeCode">{{ t('الكود', 'Code') }}</label>
+          <input id="employeeCode" type="text" formControlName="code" placeholder="EMP-1001" />
+          @if (employeeForm.controls.code.touched && employeeForm.controls.code.invalid) {
+            <span class="error-note">{{ t('كود الموظف مطلوب.', 'Employee code is required.') }}</span>
+          }
+        </div>
+
+        <div class="field">
+          <label for="employeeFullName">{{ t('الاسم الكامل', 'Full Name') }}</label>
+          <input id="employeeFullName" type="text" formControlName="fullName" [placeholder]="t('أمينة حسن', 'Amina Hassan')" />
+          @if (employeeForm.controls.fullName.touched && employeeForm.controls.fullName.invalid) {
+            <span class="error-note">{{ t('اسم الموظف مطلوب.', 'Employee name is required.') }}</span>
+          }
+        </div>
+
+        <div class="field">
+          <label for="employeeDate">{{ t('تاريخ التعيين', 'Hire Date') }}</label>
+          <input id="employeeDate" type="date" formControlName="hireDate" />
+        </div>
+
+        <div class="field">
+          <label for="employeeDepartment">{{ t('القسم', 'Department') }}</label>
+          <select id="employeeDepartment" formControlName="departmentId">
+            <option [ngValue]="0">{{ t('اختر القسم', 'Choose a department') }}</option>
+            @for (department of departments(); track department.id) {
+              <option [ngValue]="department.id">{{ department.code }} - {{ department.name }}</option>
+            }
+          </select>
+          @if (employeeForm.controls.departmentId.touched && employeeForm.controls.departmentId.invalid) {
+            <span class="error-note">{{ t('اختر قسمًا.', 'Please choose a department.') }}</span>
+          }
+        </div>
+      </div>
+
+      <div class="button-row" style="margin-top: 16px;">
+        <button type="submit" class="button primary" [disabled]="loading()">
+          {{ employeeEditingId() === null ? t('حفظ الموظف', 'Save employee') : t('تحديث الموظف', 'Update employee') }}
+        </button>
+        <button type="button" class="button secondary" [disabled]="loading()" (click)="cancelEmployeeEdit()">
+          {{ t('تفريغ النموذج', 'Reset form') }}
+        </button>
+      </div>
+    </form>
+  </article>
+
+  <article class="page-card">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">{{ t('قائمة الداتابيس', 'Database List') }}</p>
+        <h2>{{ t('جدول الموظفين', 'Employees Table') }}</h2>
+      </div>
+      <span class="status-pill">{{ employees().length }} {{ t('سجل', 'rows') }}</span>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>{{ t('الكود', 'Code') }}</th>
+            <th>{{ t('الاسم', 'Name') }}</th>
+            <th>{{ t('تاريخ التعيين', 'Hire Date') }}</th>
+            <th>{{ t('القسم', 'Department') }}</th>
+            <th>{{ t('الإجراءات', 'Actions') }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (employee of employees(); track employee.id) {
+            <tr>
+              <td><span class="table-badge">{{ employee.code }}</span></td>
+              <td>{{ employee.fullName }}</td>
+              <td>{{ formatDate(employee.hireDate) }}</td>
+              <td>{{ employee.departmentName }}</td>
+              <td class="actions-cell">
+                <div class="table-actions">
+                  <button type="button" class="button ghost" [disabled]="loading()" (click)="beginEmployeeEdit(employee)">{{ t('تعديل', 'Edit') }}</button>
+                  <button type="button" class="button danger" [disabled]="loading()" (click)="openEmployeeDeleteDialog(employee)">{{ t('حذف', 'Delete') }}</button>
+                </div>
+              </td>
+            </tr>
+          } @empty {
+            <tr>
+              <td class="empty-state" colspan="5">{{ t('لا توجد سجلات موظفين.', 'No employee rows found.') }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </article>
+
+  @if (deleteTarget(); as target) {
+    <div class="dialog-overlay">
+      <section class="dialog" role="dialog" aria-modal="true" aria-labelledby="employee-delete-title">
+        <div class="dialog-note">{{ t('تأكيد الحذف مطلوب', 'Deletion confirmation required') }}</div>
+        <h2 id="employee-delete-title">{{ t('حذف الموظف', 'Delete employee') }}</h2>
+        <p><strong>{{ target.label }}</strong></p>
+        <p>{{ target.note }}</p>
+
+        <div class="dialog-actions">
+          <button type="button" class="button secondary" [disabled]="loading()" (click)="closeDeleteDialog()">{{ t('إلغاء', 'Cancel') }}</button>
+          <button type="button" class="button danger" [disabled]="loading()" (click)="confirmDelete()">{{ t('حذف الموظف', 'Delete employee') }}</button>
+        </div>
+      </section>
+    </div>
+  }
+</section>

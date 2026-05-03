@@ -1,0 +1,67 @@
+<main class="shell" [attr.dir]="language.current() === 'ar' ? 'rtl' : 'ltr'">
+  <div class="content">
+    @if (feedback.toast(); as toastState) {
+      <div class="toast" [class.success]="toastState.kind === 'success'" [class.warning]="toastState.kind === 'warning'" [class.danger]="toastState.kind === 'danger'" [class.info]="toastState.kind === 'info'" role="status" aria-live="polite">
+        <div>
+          <strong>{{ toastState.kind }}</strong>
+          <span>{{ toastState.message }}</span>
+        </div>
+        <button type="button" class="toast-close" [attr.aria-label]="t('إغلاق التنبيه', 'Dismiss notification')" (click)="feedback.dismissToast()">&times;</button>
+      </div>
+    }
+
+    <header class="hero">
+      <div>
+        <p class="eyebrow">{{ t('Automatic Zoom', 'Automatic Zoom') }}</p>
+        <h1>{{ t('نظام إدارة الأقسام والموظفين', 'Department and Employee Manager') }}</h1>
+        <p>{{ t('واجهة مبسطة مع صفحات منفصلة لكل نموذج إدخال.', 'Simplified interface with separate pages for each input form.') }}</p>
+      </div>
+
+      <div class="hero-actions">
+        <div class="menu-row">
+          <nav class="top-links">
+            <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">{{ t('الرئيسية', 'Home') }}</a>
+            <a routerLink="/departments" routerLinkActive="active">{{ t('الأقسام', 'Departments') }}</a>
+            <a routerLink="/employees" routerLinkActive="active">{{ t('الموظفون', 'Employees') }}</a>
+          </nav>
+
+          <div class="control-strip">
+            <button
+              type="button"
+              class="icon-btn"
+              [class.active]="language.current() === 'ar'"
+              [attr.aria-label]="t('تبديل اللغة', 'Toggle language')"
+              [attr.title]="language.current() === 'ar' ? 'AR' : 'EN'"
+              (click)="toggleLanguage()"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Zm6.9 9h-3.1a15.7 15.7 0 0 0-1.3-5A8.03 8.03 0 0 1 18.9 11ZM12 4.1A13.9 13.9 0 0 1 13.8 11h-3.6A13.9 13.9 0 0 1 12 4.1ZM4.1 13h3.1a15.7 15.7 0 0 0 1.3 5A8.03 8.03 0 0 1 4.1 13Zm3.1-2H4.1A8.03 8.03 0 0 1 8.5 6a15.7 15.7 0 0 0-1.3 5Zm4.8 8.9A13.9 13.9 0 0 1 10.2 13h3.6A13.9 13.9 0 0 1 12 19.9ZM14.2 11h-4.4a13.4 13.4 0 0 1 0-2h4.4a13.4 13.4 0 0 1 0 2Zm.3 7a15.7 15.7 0 0 0 1.3-5h3.1a8.03 8.03 0 0 1-4.4 5Z" />
+              </svg>
+            </button>
+
+            <button
+              type="button"
+              class="icon-btn"
+              [class.active]="theme.current() === 'dark'"
+              [attr.aria-label]="t('تبديل المظهر', 'Toggle theme')"
+              [attr.title]="theme.current() === 'dark' ? t('داكن', 'Dark') : t('فاتح', 'Light')"
+              (click)="toggleTheme()"
+            >
+              @if (theme.current() === 'dark') {
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M21 12.8A9 9 0 1 1 11.2 3a1 1 0 0 1 1.1 1.4A7 7 0 1 0 19.6 11a1 1 0 0 1 1.4 1.8Z" />
+                </svg>
+              } @else {
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M12 5a1 1 0 0 1-1-1V2a1 1 0 1 1 2 0v2a1 1 0 0 1-1 1Zm0 17a1 1 0 0 1-1-1v-2a1 1 0 1 1 2 0v2a1 1 0 0 1-1 1ZM5 13H3a1 1 0 0 1 0-2h2a1 1 0 1 1 0 2Zm16 0h-2a1 1 0 1 1 0-2h2a1 1 0 0 1 0 2ZM6.3 7.7 4.9 6.3a1 1 0 1 1 1.4-1.4l1.4 1.4a1 1 0 0 1-1.4 1.4Zm12.8 12.8-1.4-1.4a1 1 0 1 1 1.4-1.4l1.4 1.4a1 1 0 0 1-1.4 1.4ZM17.7 7.7a1 1 0 0 1 0-1.4l1.4-1.4a1 1 0 1 1 1.4 1.4l-1.4 1.4a1 1 0 0 1-1.4 0ZM4.9 20.5a1 1 0 0 1 0-1.4l1.4-1.4a1 1 0 1 1 1.4 1.4l-1.4 1.4a1 1 0 0 1-1.4 0ZM12 8a4 4 0 1 1 0 8 4 4 0 0 1 0-8Z" />
+                </svg>
+              }
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <router-outlet></router-outlet>
+  </div>
+</main>

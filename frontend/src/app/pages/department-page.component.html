@@ -1,0 +1,128 @@
+<section class="page-stack">
+  <article class="page-card page-header">
+    <div>
+      <p class="eyebrow">{{ t('إدخال الأقسام', 'Department Input') }}</p>
+      <h1>{{ t('شاشة الأقسام', 'Department Screen') }}</h1>
+      <p class="muted">{{ t('نموذج إدخال القسم في الأعلى، وقائمة الداتابيس بالأسفل.', 'Department form on top, database list below.') }}</p>
+
+      <div class="page-nav">
+        <a routerLink="/">{{ t('الرئيسية', 'Home') }}</a>
+        <a routerLink="/employees">{{ t('شاشة الموظفين', 'Employee Screen') }}</a>
+      </div>
+    </div>
+    <span class="status-pill">{{ t('عدد الأقسام', 'Departments') }}: {{ departments().length }}</span>
+  </article>
+
+  @if (loading()) {
+    <div class="loading-line" aria-live="polite">
+      <span class="spinner"></span>
+      {{ t('جاري تحديث بيانات الأقسام...', 'Synchronizing department data...') }}
+    </div>
+  }
+
+  <article class="page-card">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">{{ t('نموذج القسم', 'Department Form') }}</p>
+        <h2>{{ departmentEditingId() === null ? t('إضافة قسم', 'Add Department') : t('تعديل القسم المحدد', 'Edit Selected Department') }}</h2>
+      </div>
+      @if (departmentEditingId() !== null) {
+        <button type="button" class="button ghost" [disabled]="loading()" (click)="cancelDepartmentEdit()">{{ t('إلغاء التعديل', 'Cancel edit') }}</button>
+      }
+    </div>
+
+    <form [formGroup]="departmentForm" (ngSubmit)="saveDepartment()" novalidate>
+      <div class="form-grid">
+        <div class="field">
+          <label for="departmentCode">{{ t('الكود', 'Code') }}</label>
+          <input id="departmentCode" type="text" formControlName="code" placeholder="ADM" />
+          @if (departmentForm.controls.code.touched && departmentForm.controls.code.invalid) {
+            <span class="error-note">{{ t('كود القسم مطلوب.', 'Department code is required.') }}</span>
+          }
+        </div>
+
+        <div class="field">
+          <label for="departmentName">{{ t('الاسم', 'Name') }}</label>
+          <input id="departmentName" type="text" formControlName="name" [placeholder]="t('الإدارة', 'Administration')" />
+          @if (departmentForm.controls.name.touched && departmentForm.controls.name.invalid) {
+            <span class="error-note">{{ t('اسم القسم مطلوب.', 'Department name is required.') }}</span>
+          }
+        </div>
+
+        <div class="field full">
+          <label for="departmentDate">{{ t('تاريخ الإنشاء', 'Established Date') }}</label>
+          <input id="departmentDate" type="date" formControlName="establishedDate" />
+        </div>
+      </div>
+
+      <div class="button-row" style="margin-top: 16px;">
+        <button type="submit" class="button primary" [disabled]="loading()">
+          {{ departmentEditingId() === null ? t('حفظ القسم', 'Save department') : t('تحديث القسم', 'Update department') }}
+        </button>
+        <button type="button" class="button secondary" [disabled]="loading()" (click)="cancelDepartmentEdit()">
+          {{ t('تفريغ النموذج', 'Reset form') }}
+        </button>
+      </div>
+    </form>
+  </article>
+
+  <article class="page-card">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">{{ t('قائمة الداتابيس', 'Database List') }}</p>
+        <h2>{{ t('جدول الأقسام', 'Departments Table') }}</h2>
+      </div>
+      <span class="status-pill">{{ departments().length }} {{ t('سجل', 'rows') }}</span>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>{{ t('الكود', 'Code') }}</th>
+            <th>{{ t('الاسم', 'Name') }}</th>
+            <th>{{ t('تاريخ الإنشاء', 'Established') }}</th>
+            <th>{{ t('عدد الموظفين', 'Employees') }}</th>
+            <th>{{ t('الإجراءات', 'Actions') }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (department of departments(); track department.id) {
+            <tr>
+              <td><span class="table-badge">{{ department.code }}</span></td>
+              <td>{{ department.name }}</td>
+              <td>{{ formatDate(department.establishedDate) }}</td>
+              <td>{{ department.employeeCount }}</td>
+              <td class="actions-cell">
+                <div class="table-actions">
+                  <button type="button" class="button ghost" [disabled]="loading()" (click)="beginDepartmentEdit(department)">{{ t('تعديل', 'Edit') }}</button>
+                  <button type="button" class="button danger" [disabled]="loading()" (click)="openDepartmentDeleteDialog(department)">{{ t('حذف', 'Delete') }}</button>
+                </div>
+              </td>
+            </tr>
+          } @empty {
+            <tr>
+              <td class="empty-state" colspan="5">{{ t('لا توجد أقسام.', 'No departments found.') }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </article>
+
+  @if (deleteTarget(); as target) {
+    <div class="dialog-overlay">
+      <section class="dialog" role="dialog" aria-modal="true" aria-labelledby="department-delete-title">
+        <div class="dialog-note">{{ t('تأكيد الحذف مطلوب', 'Deletion confirmation required') }}</div>
+        <h2 id="department-delete-title">{{ t('حذف القسم', 'Delete department') }}</h2>
+        <p><strong>{{ target.label }}</strong></p>
+        <p>{{ target.note }}</p>
+
+        <div class="dialog-actions">
+          <button type="button" class="button secondary" [disabled]="loading()" (click)="closeDeleteDialog()">{{ t('إلغاء', 'Cancel') }}</button>
+          <button type="button" class="button danger" [disabled]="loading()" (click)="confirmDelete()">{{ t('حذف القسم', 'Delete department') }}</button>
+        </div>
+      </section>
+    </div>
+  }
+</section>

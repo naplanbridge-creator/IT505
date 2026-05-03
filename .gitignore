@@ -1,0 +1,19 @@
+# Build outputs
+backend/bin/
+backend/obj/
+backend/temp-release-build/
+backend/*.db
+backend/*.db-shm
+backend/*.db-wal
+backend/*.db-journal
+frontend/dist/
+frontend/node_modules/
+
+# Local tooling and OS files
+.vs/
+.vscode/
+*.user
+*.suo
+*.log
+Thumbs.db
+.DS_Store
