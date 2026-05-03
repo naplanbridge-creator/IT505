@@ -32,7 +32,9 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 }
 
+app.UseStaticFiles();
 app.UseCors("AngularClient");
 app.MapControllers();
+app.MapFallbackToFile("index.html");
 
 app.Run();

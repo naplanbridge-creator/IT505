@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: it505-app
+    env: dotnet
+    plan: free
+    buildCommand: |
+      cd frontend
+      npm ci
+      npm run build
+      cd ..
+      rm -rf backend/wwwroot
+      mkdir -p backend/wwwroot
+      cp -r frontend/dist/frontend/. backend/wwwroot/
+      cd backend
+      dotnet publish IT505.Api.csproj -c Release -o out
+    startCommand: dotnet backend/out/IT505.Api.dll
+    healthCheckPath: /
