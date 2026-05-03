@@ -148,26 +148,6 @@
 	box-shadow: 0 10px 20px var(--nav-active-shadow);
 }
 
-.top-links a.plain-link {
-	flex: 0 0 auto;
-	min-height: auto;
-	padding: 0;
-	border: 0;
-	background: transparent;
-	color: var(--brand);
-	text-decoration: underline;
-	text-underline-offset: 4px;
-	box-shadow: none;
-}
-
-.top-links a.plain-link:hover,
-.top-links a.plain-link.active {
-	transform: none;
-	background: transparent;
-	color: var(--brand-strong);
-	box-shadow: none;
-}
-
 .icon-btn {
 	border: 0;
 	background: var(--switch-bg);
