@@ -75,6 +75,74 @@
       text-decoration: none;
       color: var(--text);
     }
+    .section-note {
+      margin: 0 0 8px;
+      color: var(--muted);
+    }
+    .screenshot-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 16px;
+      margin-top: 18px;
+    }
+    .shot-card {
+      margin: 0;
+      overflow: hidden;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: #0f1620;
+      box-shadow: 0 14px 26px rgba(42, 28, 12, 0.08);
+      display: flex;
+      flex-direction: column;
+    }
+    .shot-card.featured {
+      grid-column: 1 / -1;
+    }
+    .shot-card img {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: 420px;
+      object-fit: contain;
+      background: #0b1120;
+    }
+    .shot-card.featured img {
+      max-height: 560px;
+    }
+    .shot-caption {
+      padding: 14px 16px 16px;
+      background: linear-gradient(180deg, rgba(249, 241, 230, 0.98), rgba(244, 239, 231, 0.98));
+    }
+    .shot-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+    .shot-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 46px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: rgba(122, 78, 43, 0.12);
+      color: var(--brand);
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+    }
+    .shot-title {
+      margin: 0;
+      color: var(--text);
+      font-size: 1rem;
+      font-weight: 800;
+    }
+    .shot-desc {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+    }
     .footer { margin-top: 18px; color: var(--muted); }
     code { background: #fff; border: 1px solid var(--border); padding: 2px 6px; border-radius: 8px; }
   </style>
@@ -84,11 +152,12 @@
     <section class="hero">
       <p class="eyebrow">التقرير النهائي</p>
       <h1>نموذج تقرير مشروع HR System</h1>
-      <p class="muted">صفحة عربية باتجاه RTL تلخص تعريف المشكلة والأهداف والتقنيات وتصميم قاعدة البيانات وأسماء الفريق.</p>
+      <p class="muted">صفحة عربية باتجاه RTL تلخص تعريف المشكلة والأهداف والتقنيات وتصميم قاعدة البيانات وأسماء الفريق، مع لقطات شاشة فعلية من النسخة الحية.</p>
       <div class="nav">
         <a href="index.html">الرجوع إلى الفهرس</a>
         <a href="database-erd.html">عرض ERD</a>
         <a href="requirements-checklist-ar.html">قائمة المتطلبات</a>
+        <a href="#screenshots">لقطات الشاشة</a>
       </div>
     </section>
 
@@ -135,17 +204,99 @@
       <p class="muted">راجع <a href="database-erd.html">مخطط قاعدة البيانات ERD</a> للمزيد من التفاصيل.</p>
     </section>
 
-    <section class="section">
+    <section class="section" id="screenshots">
       <h2>5. لقطات الشاشة المطلوب تضمينها</h2>
-      <ul>
-        <li>الشاشة الرئيسية</li>
-        <li>نموذج إدخال القسم</li>
-        <li>نموذج إدخال الموظف</li>
-        <li>نموذج البحث مع الفلاتر</li>
-        <li>جدول نتائج البحث</li>
-        <li>نافذة تأكيد الحذف</li>
-        <li>تنبيهات النجاح والخطأ</li>
-      </ul>
+      <p class="section-note">الصور التالية مأخوذة من نسخة التشغيل الحية وتغطي المسار الكامل: البداية، البحث، النماذج، الحذف، والتنبيهات.</p>
+
+      <div class="screenshot-grid">
+        <figure class="shot-card featured">
+          <img src="screenshots/01-home-overview.png" alt="لقطة الشاشة الرئيسية في HR System" />
+          <figcaption class="shot-caption">
+            <div class="shot-meta">
+              <span class="shot-number">01</span>
+              <p class="shot-title">الشاشة الرئيسية</p>
+            </div>
+            <p class="shot-desc">تعرض الهيرو، وبطاقات التوجيه، ولوحة بحث الموظفين بالتصميم الداكن النهائي.</p>
+          </figcaption>
+        </figure>
+
+        <figure class="shot-card">
+          <img src="screenshots/02-search-filters.png" alt="لقطة نموذج البحث مع الفلاتر" />
+          <figcaption class="shot-caption">
+            <div class="shot-meta">
+              <span class="shot-number">02</span>
+              <p class="shot-title">نموذج البحث مع الفلاتر</p>
+            </div>
+            <p class="shot-desc">يُظهر حقول الاسم والكود والتاريخ قبل تنفيذ الاستعلام.</p>
+          </figcaption>
+        </figure>
+
+        <figure class="shot-card">
+          <img src="screenshots/03-search-results.png" alt="لقطة نتائج البحث بعد التصفية" />
+          <figcaption class="shot-caption">
+            <div class="shot-meta">
+              <span class="shot-number">03</span>
+              <p class="shot-title">نتائج البحث</p>
+            </div>
+            <p class="shot-desc">يعرض جدولًا مفلترًا لنتيجة واحدة مطابقة للقيم المدخلة.</p>
+          </figcaption>
+        </figure>
+
+        <figure class="shot-card">
+          <img src="screenshots/04-departments-form.png" alt="لقطة نموذج إدخال القسم" />
+          <figcaption class="shot-caption">
+            <div class="shot-meta">
+              <span class="shot-number">04</span>
+              <p class="shot-title">نموذج إدخال القسم</p>
+            </div>
+            <p class="shot-desc">يوضح شاشة الأقسام مع النموذج والجدول الموجود أسفلها.</p>
+          </figcaption>
+        </figure>
+
+        <figure class="shot-card">
+          <img src="screenshots/05-employees-form.png" alt="لقطة نموذج إدخال الموظف" />
+          <figcaption class="shot-caption">
+            <div class="shot-meta">
+              <span class="shot-number">05</span>
+              <p class="shot-title">نموذج إدخال الموظف</p>
+            </div>
+            <p class="shot-desc">يعرض حقول الموظف واختيار القسم مع جدول السجلات أسفل الصفحة.</p>
+          </figcaption>
+        </figure>
+
+        <figure class="shot-card">
+          <img src="screenshots/06-delete-confirm.png" alt="لقطة نافذة تأكيد الحذف" />
+          <figcaption class="shot-caption">
+            <div class="shot-meta">
+              <span class="shot-number">06</span>
+              <p class="shot-title">نافذة تأكيد الحذف</p>
+            </div>
+            <p class="shot-desc">تظهر قبل تنفيذ الحذف وتعرض اسم القسم وملاحظته المرتبطة بالموظفين.</p>
+          </figcaption>
+        </figure>
+
+        <figure class="shot-card">
+          <img src="screenshots/07-success-toast.png" alt="لقطة تنبيه النجاح" />
+          <figcaption class="shot-caption">
+            <div class="shot-meta">
+              <span class="shot-number">07</span>
+              <p class="shot-title">تنبيه النجاح</p>
+            </div>
+            <p class="shot-desc">يوضح رسالة النجاح بعد تحديث بيانات القسم بنجاح.</p>
+          </figcaption>
+        </figure>
+
+        <figure class="shot-card">
+          <img src="screenshots/08-error-toast.png" alt="لقطة تنبيه الخطأ" />
+          <figcaption class="shot-caption">
+            <div class="shot-meta">
+              <span class="shot-number">08</span>
+              <p class="shot-title">تنبيه الخطأ</p>
+            </div>
+            <p class="shot-desc">يبين الخطأ الناتج عند محاولة حذف قسم ما زال مرتبطًا بموظفين.</p>
+          </figcaption>
+        </figure>
+      </div>
     </section>
 
     <section class="section">
