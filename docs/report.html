@@ -31,13 +31,53 @@
       line-height: 1.9;
     }
     .page { max-width: 1100px; margin: 0 auto; padding: 32px 20px 60px; }
-    .hero, .section {
+    .cover, .section {
       background: rgba(255, 250, 243, 0.9);
       border: 1px solid var(--border);
       border-radius: 22px;
       box-shadow: 0 12px 30px rgba(70, 47, 25, 0.06);
     }
-    .hero { padding: 28px; }
+    .cover {
+      position: relative;
+      min-height: calc(100vh - 104px);
+      padding: 28px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+    }
+    .cover::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(135deg, rgba(18, 16, 13, 0.82), rgba(18, 16, 13, 0.52)),
+        url('screenshots/01-home-overview.png') center center / cover no-repeat;
+      filter: saturate(1.05);
+    }
+    .cover::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at top right, rgba(255, 201, 145, 0.18), transparent 30%),
+        radial-gradient(circle at bottom left, rgba(255, 255, 255, 0.08), transparent 32%);
+      pointer-events: none;
+    }
+    .cover-inner {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 760px;
+      margin: 0 auto;
+      text-align: center;
+      color: #fff8ef;
+      padding: 28px 24px;
+      background: linear-gradient(180deg, rgba(20, 18, 15, 0.34), rgba(20, 18, 15, 0.18));
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 28px;
+      backdrop-filter: blur(4px);
+      box-shadow: 0 22px 60px rgba(0, 0, 0, 0.28);
+    }
     .section { margin-top: 18px; padding: 22px 24px; }
     .eyebrow { margin: 0 0 10px; color: var(--brand-2); font-weight: 700; }
     h1, h2 { margin: 0 0 12px; line-height: 1.35; }
@@ -84,57 +124,52 @@
     .hero-copy {
       min-width: 0;
     }
-    .report-meta {
-      display: grid;
-      gap: 12px;
-      grid-template-columns: repeat(1, minmax(0, 1fr));
-    }
-    .meta-card {
-      background: var(--surface-2);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 16px 18px;
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
-      break-inside: avoid;
-    }
-    .meta-label {
-      display: block;
-      margin-bottom: 6px;
-      color: var(--brand-2);
-      font-size: 0.78rem;
-      font-weight: 800;
-      text-transform: uppercase;
+    .cover .eyebrow {
+      color: #ffddb7;
       letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
     }
-    .meta-value {
-      margin: 0;
-      color: var(--text);
-      font-size: 1.05rem;
+    .cover h1 {
+      color: #fffaf3;
+      font-size: clamp(2.7rem, 7vw, 5rem);
+      margin-bottom: 14px;
+      text-shadow: 0 10px 30px rgba(0, 0, 0, 0.34);
+    }
+    .cover .cover-subtitle {
+      margin: 0 auto 18px;
+      max-width: 620px;
+      color: rgba(255, 248, 239, 0.94);
+      font-size: clamp(1rem, 2.4vw, 1.2rem);
+    }
+    .team-stack {
+      display: grid;
+      gap: 10px;
+      max-width: 520px;
+      margin: 18px auto 0;
+    }
+    .team-stack .team-label {
+      font-size: 0.82rem;
       font-weight: 800;
-      line-height: 1.5;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #ffddb7;
     }
-    .meta-desc {
-      margin: 6px 0 0;
-      color: var(--muted);
-      line-height: 1.65;
-      font-size: 0.95rem;
+    .team-stack ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 8px;
     }
-    .report-summary {
-      margin-top: 18px;
-      padding: 18px 20px;
-      border-radius: 18px;
-      border: 1px solid rgba(122, 78, 43, 0.18);
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.7), rgba(249, 241, 230, 0.96));
-      break-inside: avoid;
-    }
-    .report-summary strong {
-      display: block;
-      margin-bottom: 8px;
-      color: var(--brand);
-      font-size: 1rem;
-    }
-    .report-summary p:last-child {
-      margin-bottom: 0;
+    .team-stack li {
+      margin: 0;
+      padding: 11px 14px;
+      border-radius: 14px;
+      background: rgba(255, 250, 243, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      color: #fff7ef;
+      line-height: 1.6;
     }
     .report-actions {
       margin-top: 16px;
@@ -168,9 +203,7 @@
     .shot-item.featured {
       grid-column: 1 / -1;
     }
-    .shot-item,
-    .meta-card,
-    .report-summary {
+    .shot-item {
       break-inside: avoid;
       page-break-inside: avoid;
     }
@@ -285,18 +318,27 @@
         padding: 0;
       }
 
-      .hero {
+      .cover {
         padding: 20px;
         margin-bottom: 0;
         break-after: page;
-      }
-
-      .hero-layout {
-        grid-template-columns: 1fr;
+        min-height: calc(100vh - 34mm);
       }
 
       .nav {
         display: none;
+      }
+
+      .cover::before {
+        filter: brightness(0.82) saturate(1.03);
+      }
+
+      .cover-inner {
+        background: linear-gradient(180deg, rgba(20, 18, 15, 0.36), rgba(20, 18, 15, 0.2));
+      }
+
+      .cover h1 {
+        font-size: clamp(2.4rem, 6vw, 4.2rem);
       }
 
       .section {
@@ -335,6 +377,10 @@
         display: none;
       }
 
+      .team-stack li {
+        color: #fff;
+      }
+
       .footer {
         margin-top: 16px;
         font-size: 0.92rem;
@@ -344,95 +390,52 @@
 </head>
 <body>
   <main class="page">
-    <section class="hero">
-      <div class="hero-layout">
-        <div class="hero-copy">
-          <p class="eyebrow">التقرير النهائي</p>
-          <h1>تقرير مشروع HR System</h1>
-          <p class="muted">صفحة عربية باتجاه RTL تلخص تعريف المشكلة والأهداف والتقنيات وتصميم قاعدة البيانات وأسماء الفريق، مع لقطات شاشة فعلية من النسخة الحية ونسخة PDF جاهزة للطباعة.</p>
+    <section class="cover">
+      <div class="cover-inner">
+        <p class="eyebrow">HR System</p>
+        <h1>التقرير النهائي</h1>
+        <p class="cover-subtitle">نظام إدارة الأقسام والموظفين مع واجهة عربية منظمة، ولقطات فعلية من النظام، ونسخة جاهزة للتسليم والطباعة.</p>
 
-          <div class="nav report-actions">
-            <a href="index.html">الرجوع إلى الفهرس</a>
-            <a href="report.pdf" target="_blank" rel="noopener">فتح PDF</a>
-            <a href="database-erd.html">عرض ERD</a>
-            <a href="requirements-checklist-ar.html">قائمة المتطلبات</a>
-            <a href="#screenshots">لقطات الشاشة</a>
-          </div>
+        <div class="team-stack" aria-label="أسماء الفريق">
+          <div class="team-label">أعضاء الفريق</div>
+          <ul>
+            <li>احمد حمدي كمال محمد - 202400647</li>
+            <li>محمد سعد زكريا توفيق - 202400648</li>
+            <li>محمد محمد عبد المنعم محمد - 202400722</li>
+            <li>حمدان سعودى محمد امين - 202300625</li>
+            <li>أحمد عصام امين السيد - 202400173</li>
+          </ul>
         </div>
-
-        <div class="report-meta" aria-label="ملخص التقرير">
-          <article class="meta-card">
-            <span class="meta-label">المشروع</span>
-            <p class="meta-value">HR System</p>
-            <p class="meta-desc">نظام لإدارة الأقسام والموظفين بواجهة عربية متجاوبة وتجربة استخدام واضحة.</p>
-          </article>
-
-          <article class="meta-card">
-            <span class="meta-label">التقنيات</span>
-            <p class="meta-value">.NET 10 + Angular + EF Core</p>
-            <p class="meta-desc">تم بناء الحل وفق code-first مع SQLite وواجهات API منظمة وقابلة للتوسع.</p>
-          </article>
-
-          <article class="meta-card">
-            <span class="meta-label">الإخراج</span>
-            <p class="meta-value">HTML + PDF قابل للطباعة</p>
-            <p class="meta-desc">النسخة الحالية مهيأة للعرض المباشر أو التسليم كملف مطبوع منسق.</p>
-          </article>
-        </div>
-      </div>
-
-      <div class="report-summary">
-        <strong>ملخص سريع</strong>
-        <p>يقدّم المشروع نموذجًا أوليًا متكاملًا يربط بين واجهة منظمة، وتصميم قاعدة بيانات واضح، ووظائف البحث والإدخال والحذف مع تنبيهات للمستخدم. صُممت هذه الصفحة لتكون مناسبة للتسليم النهائي، مع نسخة PDF مطابقة للطباعة.</p>
       </div>
     </section>
 
     <section class="section">
       <h2>1. تعريف المشكلة</h2>
-      <p>يقدم المشروع نموذجًا أوليًا لنظام إدارة بواجهة نظيفة وسهلة الاستخدام، مع إمكانية البحث والإدخال وتأكيد الحذف والتنبيهات للمستخدم.</p>
+      <p>يقدم المشروع نظامًا بسيطًا لإدارة الأقسام والموظفين بواجهة عربية واضحة وسهلة الاستخدام.</p>
     </section>
 
     <section class="section">
       <h2>2. الأهداف</h2>
       <ul>
-        <li>بناء واجهة واضحة ومناسبة لمبادئ HCI.</li>
+        <li>بناء واجهة واضحة ومتجاوبة.</li>
         <li>استخدام .NET 10 وAngular وEF Core بنمط code-first.</li>
-        <li>حفظ البيانات وإدارتها داخل طبقة قاعدة بيانات آمنة.</li>
-        <li>عرض وظائف CRUD مع التصفية في البحث.</li>
+        <li>تنفيذ وظائف CRUD والبحث والتصفية.</li>
+        <li>عرض النموذج بشكل مناسب للتسليم النهائي.</li>
       </ul>
     </section>
 
     <section class="section">
-      <h2>3. لغات البرمجة وبيئة التطوير</h2>
-      <div class="two-col">
-        <div class="box">
-          <ul>
-            <li>C# مع ASP.NET Core Web API</li>
-            <li>TypeScript مع Angular</li>
-          </ul>
-        </div>
-        <div class="box">
-          <ul>
-            <li>HTML وSCSS وتهيئة JSON</li>
-            <li>Visual Studio Code</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <h2>4. تصميم قاعدة البيانات</h2>
+      <h2>3. تصميم قاعدة البيانات</h2>
       <ul>
         <li>جدول Department</li>
         <li>جدول Employee</li>
         <li>علاقة واحد إلى متعدد بين Department وEmployee</li>
       </ul>
-      <p class="muted">راجع <a href="database-erd.html">مخطط قاعدة البيانات ERD</a> للمزيد من التفاصيل.</p>
     </section>
 
     <section class="section" id="screenshots">
-      <h2>5. لقطات الشاشة المطلوب تضمينها</h2>
-      <p class="section-note">الصور التالية مأخوذة من نسخة التشغيل الحية وتغطي المسار الكامل: البداية، البحث، النماذج، الحذف، والتنبيهات.</p>
+      <h2>4. لقطات الشاشة</h2>
+      <p class="section-note">الصور التالية توثق أهم شاشات النظام والرسائل التي تظهر أثناء الاستخدام.</p>
 
       <div class="screenshot-grid">
         <article class="shot-item featured">
@@ -550,7 +553,7 @@
     </section>
 
     <section class="section">
-      <h2>6. أعضاء الفريق</h2>
+      <h2>5. أعضاء الفريق</h2>
       <ul>
         <li>العضو 1: احمد حمدي كمال محمد - 202400647</li>
         <li>العضو 2: محمد سعد زكريا توفيق - 202400648</li>
@@ -561,18 +564,11 @@
     </section>
 
     <section class="section">
-      <h2>7. الخلاصة</h2>
-      <p>يحقق النموذج الأولي المطلوب عبر دمج تصميم HCI مع النماذج المرتبطة بقاعدة البيانات والبحث وتأكيد الحذف والتنبيهات.</p>
-      <p class="muted">يمكن إضافة تحسينات مستقبلية مثل المصادقة، وترقيم الصفحات، والصلاحيات حسب الدور.</p>
+      <h2>6. الخلاصة</h2>
+      <p>يوفر المشروع نموذجًا نهائيًا مختصرًا يلبّي المطلوب ويعرض الواجهة والبيانات والبحث والتنبيهات بشكل واضح.</p>
     </section>
 
-    <section class="section">
-      <h2>8. ملاحظة النشر</h2>
-      <p>في نسخة الإنتاج تُخدم الواجهة والخلفية من نفس الدومين، ويُستخدم المسار النسبي <code>/api</code> للوصول إلى الخلفية.</p>
-      <p class="muted">هذا التنظيم يسمح بعرض النسخة النهائية من الواجهة والتقرير من دون إعدادات إضافية على جهاز المراجع.</p>
-    </section>
-
-    <p class="footer">النسخة العربية HTML جاهزة للتسليم والطباعة أو العرض المباشر.</p>
+    <p class="footer">نسخة التسليم النهائية جاهزة للعرض والطباعة.</p>
   </main>
 </body>
 </html>
